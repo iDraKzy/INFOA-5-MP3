@@ -35,9 +35,9 @@ def generate_playlist(name, music_list, filter_type, artist = None, year = None,
         for song in music_list:
             if artist in song['artist']:
                 playlist.append(song)
-            if year == song['year']:
+            elif year == song['year']:
                 playlist.append(song)
-            if genre == song['genre']:
+            elif genre == song['genre']:
                 playlist.append(song)
 
     if len(playlist) != 0:
