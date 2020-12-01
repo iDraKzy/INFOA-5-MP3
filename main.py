@@ -12,12 +12,9 @@ def generate_playlist(name, artist = None, year = None, genre = None):
     year: create a playlist containing every song from a designated year (int)
     genre: create a playlist containing every song from a designated genre (str)
  
-    Returns
-    -------
     playlist# : create playlist with the corresponding name (dict)
     ########## QUID ? retour dico puis fichier ?  retour direct fichier txt ? fichier sous quelle formatage ?
     ########## QUID bis ? return en playlist n°x ou modification possible du nom de la playlist par l'utilisateur ? (je prends solution 2 pour la spé de la fonction show_content_playlist pour le moment)
-    ########## Note Youlan : Besoin de retour ? Puisqu'on va créer un fichier ?
     
     Version
     -------
