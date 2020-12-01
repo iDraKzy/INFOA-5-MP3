@@ -73,8 +73,6 @@ def read_playlist(playlist):
     -------
     specification: Hoebrechts Georges (v0.1)
     implementation: 
-
-    ####### Pourquoi un bool en retour ici ?
     """
     raise NotImplementedError()      
 
