@@ -130,3 +130,14 @@ def play_music(mp3_path):
 
 
 mixer.init()
+
+_data_structures = {
+    "Titre": {
+        "artist": "artist",
+        "year": "2014",
+        "album": "dfdff",
+        "track_number": "01",
+        "genre": "Rock",
+        "duration": 185
+    }
+}
