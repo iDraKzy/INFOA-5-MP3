@@ -18,7 +18,7 @@ def generate_playlist(name, artist = None, year = None, genre = None):
     
     Version
     -------
-    specification: Hoebrechts Georges & Collard Youlan (v0.2)
+    specification: Hoebrechts Georges, Collard Youlan (v0.2)
     implementation: 
     """
     raise NotImplementedError()
@@ -120,7 +120,7 @@ def play_music(title, song_dict):
  
     Version
     -------
-    specification: Reeckel Dadzie & Collard Youlan (v0.2)
+    specification: Reeckel Dadzie, Collard Youlan (v0.2)
     implementation: 
     """
     #TODO: Build path from song_dict
