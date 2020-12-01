@@ -47,6 +47,8 @@ def generate_playlist(name, music_list, filter_type, artist = None, year = None,
             song_str_list.append('%s - %s' % (song['albumartist'], song['title']))
         fh.write(str.join(song_str_list, '\n'))
         fh.close()
+    else:
+        print('Your playlist is empty and hasn\'t been created')
             
 
 
