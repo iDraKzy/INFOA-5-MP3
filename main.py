@@ -86,7 +86,7 @@ def sort_music(dir_path, music_path):
     
     Returns
     -------
-    Je ne pense pas qu'il y ai besoin de retour pour le moment(J'essaie de piger comment utiliser la nouvelle matière afin de mieux pouvoir spécifier)
+    music_dict: dicionnary containing all musics and their infos (dict)
     
     Version
     -------
@@ -95,12 +95,12 @@ def sort_music(dir_path, music_path):
     """
     raise NotImplementedError()
 
-def show_all_music(music_path):
+def show_all_music(music_dict):
     """Display all the music files contained in a directory and its subdirectories.
     
     Parameters
     ----------
-    music_path: path to directory the content is to be shown
+    music_dict: dicionnary containing all musics and their infos (dict)
     
     Version
     -------
