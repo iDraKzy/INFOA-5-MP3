@@ -1,10 +1,13 @@
+from pygame import mixer
+from mutagen import easyid3
+
 # créer une playlist à partir de critères divers (artiste, année, etc.), (Georges, Loic, Youlan) 
  
 def generate_playlist(name, artist = None, year = None, genre = None):
     """generate a playlist according to the user's choice
     PARAMETERS
     ----------
-    name: name of the playlist
+    name: name of the playlist (str)
     artist: create a playlist containing every song from 1 artist (str)
     year: create a playlist containing every song from a designated year (int)
     genre: create a playlist containing every song from a designated genre (str)
@@ -108,3 +111,23 @@ def show_all_music(music_path):
     specification: Aliti Dzenetan(v0.1)
     implementation:
     """
+
+def play_music(mp3_path):
+    """
+    Play music from start to finish
+    
+    PARAMETERS
+    ----------
+    mp3_path : The path of the mp3 file(str)
+ 
+    
+    VERSION
+    -------
+    specification: Reeckel Dadzie (v0.1)
+    implementation: 
+    """
+    mixer.music.load(mp3_path)
+    mixer.music.play()
+
+    
+mixer.init()
