@@ -89,8 +89,8 @@ def sort_music(dir_path, music_path):
     dir_path: path to directory containing the music files to sort (str)
     music_path: path where to creat a music directory to store sorted music (str)
     
-    Return
-    ------
+    Returns
+    -------
     Je ne pense pas qu'il y ai besoin de retour pour le moment(J'essaie de piger comment utiliser la nouvelle matière afin de mieux pouvoir spécifier)
     
     Version
