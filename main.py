@@ -1,5 +1,5 @@
 from pygame import mixer
-from mutagen.easyid3 import EasyID3
+from mutagen.mp3 import EasyMP3
 
 # créer une playlist à partir de critères divers (artiste, année, etc.), (Georges, Loic, Youlan) 
  
@@ -62,13 +62,12 @@ def read_playlist(playlist):
     """
     raise NotImplementedError()      
 
-def sort_music(dir_path, music_path):
+def sort_music(dir_path):
     """Extract music files from a directory and sort them into authors directory and album sub-directory
     
     Parameters
     ----------
     dir_path: path to directory containing the music files to sort (str)
-    music_path: path where to creat a music directory to store sorted music (str)
     
     Returns
     -------
@@ -76,21 +75,21 @@ def sort_music(dir_path, music_path):
     
     Version
     -------
-    specification: Aliti Dzenetan(v0.1)
+    specification: Aliti Dzenetan (v0.1)
     implementation:
     """
     raise NotImplementedError()
 
-def show_all_music(music_dict):
+def show_all_music(music_list):
     """Display all the music files contained in a directory and its subdirectories.
     
     Parameters
     ----------
-    music_dict: dicionnary containing all musics and their infos (dict)
+    music_list: List of dictionnaries containing all stored songs (list)
     
     Version
     -------
-    specification: Aliti Dzenetan(v0.1)
+    specification: Aliti Dzenetan (v0.1)
     implementation:
     """
     raise NotImplementedError()
@@ -118,26 +117,26 @@ def play_music(title, music_dict):
 
 _data_structures = [
     {
-        "title": "title",
-        "artist": "artist",
-        "year": "2014",
-        "album": "dfdff",
-        "track_number": "01",
-        "genre": "Rock"
+        'title': 'title',
+        'artist': 'artist',
+        'year': '2014',
+        'album': 'dfdff',
+        'track_number': '01',
+        'genre': 'Rock'
     },
     {
-        "title": "title2",
-        "artist": "artist2",
-        "year": "2015",
-        "album": "gfdiuovjfdi",
-        "track_number": "02",
-        "genre": "Jazz"
+        'title': 'title2',
+        'artist': 'artist2',
+        'year': '2015',
+        'album': 'gfdiuovjfdi',
+        'track_number': '02',
+        'genre': 'Jazz'
     }
 ]
 
 for index, song in enumerate(_data_structures):
-    if song["title"] == "title2" and song["artist"] == "artist2":
+    if song['title'] == 'title2' and song['artist'] == 'artist2':
         print(_data_structures[index])
 
-tag = EasyID3("./Greg_Atkinson_-_06_-_Two_metres.mp3")
-# print(tag)
+tag = EasyMP3('./test.mp3')
+print(tag)
