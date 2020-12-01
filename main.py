@@ -21,7 +21,7 @@ def generate_playlist(name, artist = None, year = None, genre = None):
     
     Version
     -------
-    specification: Hoebrechts Georges & Collad Youlan (v0.2)
+    specification: Hoebrechts Georges & Collard Youlan (v0.2)
     implementation: 
     """
  
