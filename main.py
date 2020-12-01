@@ -3,22 +3,54 @@ from mutagen.mp3 import EasyMP3
 
 # créer une playlist à partir de critères divers (artiste, année, etc.), (Georges, Loic, Youlan) 
  
-def generate_playlist(name, artist = None, year = None, genre = None):
+def generate_playlist(name, music_list, filter_type, artist = None, year = None, genre = None):
     """generate a playlist according to the user's choice
     Parameters
     ----------
     name: name of the playlist (str)
-    artist: create a playlist containing every song from 1 artist (str)
-    year: create a playlist containing every song from a designated year (int)
-    genre: create a playlist containing every song from a designated genre (str)
+    music_list: List of dictionnaries containing all stored songs (list)
+    filter_type: Can be "including" or "specific" details in the notes (str)
+    artist: name of a chosen artist (str, optional)
+    year: a chosen year (int, optional)
+    genre: a chosen genre (str, optional)
 
-    
+    Notes
+    -----
+    If filter_type is set to "including" every song corresponding to at least one of the filter will be added to the playlist.
+    At the opposite if filter_type is set to "specific" only the songs matching all filters will be added to the playlist.
+    If no optional parameters are filled the playlist will contain every single song.
+
     Version
     -------
-    specification: Hoebrechts Georges, Collard Youlan (v0.2)
-    implementation: 
+    specification: Hoebrechts Georges, Collard Youlan (v .1 01/12/20)
+    implementation: Collard Youlan (v .1 01/12/20)
     """
-    raise NotImplementedError()
+    playlist = []
+    if filter_type == 'specific':
+        for song in music_list:
+            if (artist in song['artist'] or artist == None) and (year == song['year'] or year == None) and (genre == song['genre'] or genre == None):
+                playlist.append(song)
+
+    elif filter_type == 'including':
+        for song in music_list:
+            if artist in song['artist']:
+                playlist.append(song)
+            if year == song['year']:
+                playlist.append(song)
+            if genre == song['genre']:
+                playlist.append(song)
+
+    if len(playlist) != 0:
+        fh = open('./%s.txt' % name, 'w')
+        song_str_list = []
+        for song in playlist:
+            song_str_list.append('%s - %s' % (song['albumartist'], song['title']))
+        fh.write(str.join(song_str_list, '\n'))
+        fh.close()
+            
+
+
+        
  
 # afficher le nom de toutes les playlists disponibles, (Georges, Loic, Youlan) 
  
@@ -28,7 +60,7 @@ def show_all_playlist():
     Version
     -------
     specification: Hoebrechts Georges (v0.1)
-    implementation: 
+    implementation: Adam Loïc
     """ 
     raise NotImplementedError()
  
@@ -58,7 +90,7 @@ def read_playlist(playlist):
     Version
     -------
     specification: Hoebrechts Georges (v0.1)
-    implementation: 
+    implementation: Hoebrechts Georges
     """
     raise NotImplementedError()      
 
@@ -76,7 +108,7 @@ def sort_music(dir_path):
     Version
     -------
     specification: Aliti Dzenetan (v0.1)
-    implementation:
+    implementation: Aliti Dzenatan
     """
     raise NotImplementedError()
 
@@ -90,7 +122,7 @@ def show_all_music(music_list):
     Version
     -------
     specification: Aliti Dzenetan (v0.1)
-    implementation:
+    implementation: Aliti Dzenatan
     """
     raise NotImplementedError()
 
@@ -105,8 +137,8 @@ def play_music(title, music_dict):
  
     Version
     -------
-    specification: Reeckel Dadzie, Collard Youlan (v0.2)
-    implementation: 
+    specification: Dadzie Reeckel, Collard Youlan (v0.2)
+    implementation: Dadzie Reeckel
     """
     #TODO: Build path from song_dict
 #     mixer.music.load()
@@ -118,16 +150,18 @@ def play_music(title, music_dict):
 _data_structures = [
     {
         'title': 'title',
-        'artist': 'artist',
-        'year': '2014',
+        'artist': ['artist'],
+        'albumartist': 'artist',
+        'year': 2014,
         'album': 'dfdff',
         'track_number': '01',
         'genre': 'Rock'
     },
     {
         'title': 'title2',
-        'artist': 'artist2',
-        'year': '2015',
+        'artist': ['artist2'],
+        'albumartist': 'artist2',
+        'year': 2015,
         'album': 'gfdiuovjfdi',
         'track_number': '02',
         'genre': 'Jazz'
