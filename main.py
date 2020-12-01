@@ -5,21 +5,21 @@ from mutagen import easyid3
  
 def generate_playlist(name, artist = None, year = None, genre = None):
     """generate a playlist according to the user's choice
-    PARAMETERS
+    Parameters
     ----------
     name: name of the playlist (str)
     artist: create a playlist containing every song from 1 artist (str)
     year: create a playlist containing every song from a designated year (int)
     genre: create a playlist containing every song from a designated genre (str)
  
-    RETURNS
+    Returns
     -------
     playlist# : create playlist with the corresponding name (dictionary)
     ########## QUID ? retour dico puis fichier ?  retour direct fichier txt ? fichier sous quelle formatage ?
     ########## QUID bis ? return en playlist n°x ou modification possible du nom de la playlist par l'utilisateur ? (je prends solution 2 pour la spé de la fonction show_content_playlist pour le moment)
     ########## Note Youlan : Besoin de retour ? Puisqu'on va créer un fichier ?
     
-    VERSION
+    Version
     -------
     specification: Hoebrechts Georges & Collad Youlan (v0.2)
     implementation: 
@@ -29,15 +29,15 @@ def generate_playlist(name, artist = None, year = None, genre = None):
  
 def show_all_playlist():
     """show every playlist created by the user
-    PARAMETERS
+    Parameters
     ----------
     none
  
-    RETURNS
+    Returns
     -------
     list_playlist : create a list of every playlist created by the user (list)
     
-    VERSION
+    Version
     -------
     specification: Hoebrechts Georges (v0.1)
     implementation: 
@@ -47,15 +47,15 @@ def show_all_playlist():
  
 def show_content_playlist(playlist):
     """show the content of a playlist created by the user
-    PARAMETERS
+    Parameters
     ----------
     playlist : name of the playlist (str)
  
-    RETURNS
+    Returns
     -------
     playlist_content : create a list of every song in the playlist (list)
     
-    VERSION
+    Version
     -------
     specification: Hoebrechts Georges (v0.1)
     implementation: 
@@ -65,15 +65,15 @@ def show_content_playlist(playlist):
  
 def read_playlist(playlist):
     """read every song contained in a playlist
-    PARAMETERS
+    Parameters
     ----------
     playlist : name of the playlist (str)
  
-    RETURNS
+    Returns
     -------
     play_playlist : read every song contained in a playlist (bool)
     
-    VERSION
+    Version
     -------
     specification: Hoebrechts Georges (v0.1)
     implementation: 
@@ -116,12 +116,11 @@ def play_music(mp3_path):
     """
     Play music from start to finish
     
-    PARAMETERS
+    Parameters
     ----------
     mp3_path : The path of the mp3 file(str)
  
-    
-    VERSION
+    Version
     -------
     specification: Reeckel Dadzie (v0.1)
     implementation: 
@@ -129,5 +128,5 @@ def play_music(mp3_path):
     mixer.music.load(mp3_path)
     mixer.music.play()
 
-    
+
 mixer.init()
