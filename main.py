@@ -109,20 +109,22 @@ def show_all_music(music_path):
     implementation:
     """
 
-def play_music(mp3_path):
+def play_music(title, song_dict):
     """
     Play music from start to finish
     
     Parameters
     ----------
-    mp3_path : The path of the mp3 file(str)
+    title: Title of the song (str)
+    song_dict : Dict of the song from the main data structure (dict)
  
     Version
     -------
-    specification: Reeckel Dadzie (v0.1)
+    specification: Reeckel Dadzie & Collard Youlan (v0.2)
     implementation: 
     """
-    mixer.music.load(mp3_path)
+    #TODO: Build path from song_dict
+    mixer.music.load()
     mixer.music.play()
 
 
