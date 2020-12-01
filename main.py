@@ -21,6 +21,7 @@ def generate_playlist(name, artist = None, year = None, genre = None):
     specification: Hoebrechts Georges & Collard Youlan (v0.2)
     implementation: 
     """
+    raise NotImplementedError()
  
 # afficher le nom de toutes les playlists disponibles, (Georges, Loic, Youlan) 
  
@@ -39,6 +40,7 @@ def show_all_playlist():
     specification: Hoebrechts Georges (v0.1)
     implementation: 
     """ 
+    raise NotImplementedError()
  
 # afficher les morceaux contenus dans une playlist, (Georges, Loic, Youlan, P-A) 
  
@@ -57,6 +59,7 @@ def show_content_playlist(playlist):
     specification: Hoebrechts Georges (v0.1)
     implementation: 
     """    
+    raise NotImplementedError()
  
 # lire une playlist du début à la fin (appel « bloquant »). (Georges, Loic, Youlan) 
  
@@ -76,7 +79,8 @@ def read_playlist(playlist):
     implementation: 
 
     ####### Pourquoi un bool en retour ici ?
-    """      
+    """
+    raise NotImplementedError()      
 
 def sort_music(dir_path, music_path):
     """Extract music files from a directory and sort them into authors directory and album sub-directory
@@ -95,7 +99,8 @@ def sort_music(dir_path, music_path):
     specification: Aliti Dzenetan(v0.1)
     implementation:
     """
- 
+    raise NotImplementedError()
+
 def show_all_music(music_path):
     """Display all the music files contained in a directory and its subdirectories.
     
@@ -108,6 +113,7 @@ def show_all_music(music_path):
     specification: Aliti Dzenetan(v0.1)
     implementation:
     """
+    raise NotImplementedError()
 
 def play_music(title, song_dict):
     """
