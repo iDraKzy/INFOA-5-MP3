@@ -68,10 +68,6 @@ def read_playlist(playlist):
     Parameters
     ----------
     playlist : name of the playlist (str)
- 
-    Returns
-    -------
-    play_playlist : read every song contained in a playlist (bool)
     
     Version
     -------
