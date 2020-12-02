@@ -1,112 +1,12 @@
-from pygame import mixer
-from mutagen.mp3 import EasyMP3
 import os
-# créer une playlist à partir de critères divers (artiste, année, etc.), (Georges, Loic, Youlan) 
- 
-def generate_playlist(name, music_list, filter_type, artist = None, year = None, genre = None):
-    """generate a playlist according to the user's choice
-    Parameters
-    ----------
-    name: name of the playlist (str)
-    music_list: List of dictionnaries containing all stored songs (list)
-    filter_type: Can be "including" or "specific" details in the notes (str)
-    artist: name of a chosen artist (str, optional)
-    year: a chosen year (int, optional)
-    genre: a chosen genre (str, optional)
+from mutagen.mp3 import EasyMP3
 
-    Notes
-    -----
-    If filter_type is set to "including" every song corresponding to at least one of the filter will be added to the playlist.
-    At the opposite if filter_type is set to "specific" only the songs matching all filters will be added to the playlist.
-    If no optional parameters are filled the playlist will contain every single song.
-
-    Version
-    -------
-    specification: Hoebrechts Georges, Collard Youlan (v .1 01/12/20)
-    implementation: Collard Youlan (v .1 01/12/20)
-    """
-
-    if not os.path.exists('./Playlists'):
-        os.mkdir('./Playlists')
-
-    playlist = []
-    if filter_type == 'specific':
-        for song in music_list:
-            if (artist in song['artist'] or artist == None) and (year == song['year'] or year == None) and (genre == song['genre'] or genre == None):
-                playlist.append(song)
-
-    elif filter_type == 'including':
-        for song in music_list:
-            if artist in song['artist']:
-                playlist.append(song)
-            elif year == song['year']:
-                playlist.append(song)
-            elif genre == song['genre']:
-                playlist.append(song)
-
-    if len(playlist) != 0:
-        fh = open('./Playlists/%s.txt' % name, 'w')
-        song_str_list = []
-        for song in playlist:
-            song_str_list.append('%s - %s' % (song['albumartist'], song['title']))
-        fh.write(concatenate(song_str_list, '\n'))
-        fh.close()
-    else:
-        print('Your playlist is empty and hasn\'t been created')
-            
-
-
-        
- 
-# afficher le nom de toutes les playlists disponibles, (Georges, Loic, Youlan) 
- 
-def show_all_playlist():
-    """show every playlist created by the user
-    
-    Version
-    -------
-    specification: Hoebrechts Georges (v0.1)
-    implementation: Adam Loïc
-    """ 
-    raise NotImplementedError()
- 
-# afficher les morceaux contenus dans une playlist, (Georges, Loic, Youlan, P-A) 
- 
-def show_content_playlist(playlist):
-    """show the content of a playlist created by the user
-    Parameters
-    ----------
-    playlist : name of the playlist (str)
-    
-    Version
-    -------
-    specification: Hoebrechts Georges (v0.1)
-    implementation: 
-    """    
-    raise NotImplementedError()
- 
-# lire une playlist du début à la fin (appel « bloquant »). (Georges, Loic, Youlan) 
- 
-def read_playlist(playlist):
-    """read every song contained in a playlist
-    Parameters
-    ----------
-    playlist : name of the playlist (str)
-    
-    Version
-    -------
-    specification: Hoebrechts Georges (v0.1)
-    implementation: Hoebrechts Georges
-    """
-    raise NotImplementedError() 
-
-def concatenate(word_list, separator=''):
+def concatenate(word_list):
     """Concatenate word from a list to a string
     
     Parameters
     ----------
     word_list: a list of words (list)
-    seperator: Seperator to put between the items to concatenate (str, optional)
     
     Returns
     -------
@@ -114,16 +14,16 @@ def concatenate(word_list, separator=''):
 
     Version
     -------
-    specification: Aliti Dzenetan, Collard Youlan (v0.1 02/12/20)
-    implementation: Aliti Dzenetan, Collard Youlan (v0.1 02/12/20)
+    specification: Aliti Dzenetan (v0.1)
+    implementation: Aliti Dzenetan
     """
     #function used instead of str.join()
     string = ''
-    for index, word in enumerate(word_list):
+    for word in word_list:
         string += word
-        if not index == len(word_list) - 1:
-            string += separator
     return string
+    
+
 
 def sort_music(dir_extract_path):
     """Extract music files from a directory and sort them into authors directory and album sub-directory
@@ -256,7 +156,7 @@ def information_dict(file_path):
         list_of_music_dict.append(dicti)
     fh.close()
     return list_of_music_dict
-
+    
 def show_all_music(path_to_txt):
     """Display all the music files contained in a directory and its subdirectories.
     
@@ -274,51 +174,12 @@ def show_all_music(path_to_txt):
     for elem in dicti:
         print('%s from artist %s in album %s' % (elem['title'], elem['artist'], elem['album']))
 
-def play_music(title, music_dict):
-    """
-    Play music from start to finish
-    
-    Parameters
-    ----------
-    title: Title of the song (str) #Peut être info à trouvé avec mutagen pour indentification unique
-    music_dict : Main data structures generated by sort_music (dict)
- 
-    Version
-    -------
-    specification: Dadzie Reeckel, Collard Youlan (v0.2)
-    implementation: Dadzie Reeckel
-    """
-    #TODO: Build path from song_dict
-#     mixer.music.load()
-#     mixer.music.play()
 
 
-# mixer.init()
+            
+   
+sort_music('F:\Codage\Git\INFOA-5-MP3-1\\archive')
+show_all_music('F:\Codage\Git\INFOA-5-MP3-1\dicti.txt')
 
-_data_structures = [
-    {
-        'title': 'title',
-        'artist': ['artist'],
-        'albumartist': 'artist',
-        'year': 2014,
-        'album': 'dfdff',
-        'track_number': '01',
-        'genre': 'Rock'
-    },
-    {
-        'title': 'title2',
-        'artist': ['artist2'],
-        'albumartist': 'artist2',
-        'year': 2015,
-        'album': 'gfdiuovjfdi',
-        'track_number': '02',
-        'genre': 'Jazz'
-    }
-]
 
-for index, song in enumerate(_data_structures):
-    if song['title'] == 'title2' and song['artist'] == 'artist2':
-        print(_data_structures[index])
 
-tag = EasyMP3('./test.mp3')
-print(tag)
