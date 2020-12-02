@@ -25,6 +25,10 @@ def generate_playlist(name, music_list, filter_type, artist = None, year = None,
     specification: Hoebrechts Georges, Collard Youlan (v .1 01/12/20)
     implementation: Collard Youlan (v .1 01/12/20)
     """
+
+    if not os.path.exists('./Playlists'):
+        os.mkdir('./Playlists')
+
     playlist = []
     if filter_type == 'specific':
         for song in music_list:
@@ -41,7 +45,7 @@ def generate_playlist(name, music_list, filter_type, artist = None, year = None,
                 playlist.append(song)
 
     if len(playlist) != 0:
-        fh = open('./%s.txt' % name, 'w')
+        fh = open('./Playlists/%s.txt' % name, 'w')
         song_str_list = []
         for song in playlist:
             song_str_list.append('%s - %s' % (song['albumartist'], song['title']))
