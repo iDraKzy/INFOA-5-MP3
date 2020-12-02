@@ -1,6 +1,6 @@
 from pygame import mixer
 from mutagen.mp3 import EasyMP3
-
+import os
 # créer une playlist à partir de critères divers (artiste, année, etc.), (Georges, Loic, Youlan) 
  
 def generate_playlist(name, music_list, filter_type, artist = None, year = None, genre = None):
@@ -94,7 +94,29 @@ def read_playlist(playlist):
     specification: Hoebrechts Georges (v0.1)
     implementation: Hoebrechts Georges
     """
-    raise NotImplementedError()      
+    raise NotImplementedError() 
+
+def concatenate(word_list):
+    """Concatenate word from a list to a string
+    
+    Parameters
+    ----------
+    word_list: a list of words (list)
+    
+    Returns
+    -------
+    string: the elements of word_list (str)
+
+    Version
+    -------
+    specification: Aliti Dzenetan (v0.1)
+    implementation: Aliti Dzenetan
+    """
+    #function used instead of str.join()
+    string = ''
+    for word in word_list:
+        string += word
+    return string
 
 def sort_music(dir_path):
     """Extract music files from a directory and sort them into authors directory and album sub-directory
