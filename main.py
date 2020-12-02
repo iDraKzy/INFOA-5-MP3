@@ -269,7 +269,14 @@ def show_all_music(music_list):
     specification: Aliti Dzenetan (v0.1)
     implementation: Aliti Dzenatan
     """
-    raise NotImplementedError()
+    liste = os.listdir('.\\')
+    print(liste)
+    for directory in liste:
+        if os.path.isdir('.\\'directory) and os.path.getsize('.\\'directory) != 0:           
+            for album in os.listdir('.\\'directory):
+                print('The album %s from artist %s contain those titles :\n' % (album, directory))
+                for song in os.listdir('.\\directory\\album'):
+                    print('%s\n' % song)
 
 def play_music(title, music_dict):
     """
