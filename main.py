@@ -202,6 +202,54 @@ def sort_music(dir_extract_path):
 
     return list_of_music_dict
 
+def information_dict(file_path):
+    """Store music information from a file to a list of dictionnaries
+    
+    Parameters
+    ----------
+    file_path: path to the file listing music informations (str)
+    
+    Returns
+    -------
+    list_of_music_dict: list containing dictionnaries with music informations (list)
+
+    Notes
+    -----
+    the infos about music is written in format title;artist;albumartist;year;album;track_number;genre;\n in the .txt file
+
+    Version
+    -------
+    specification: Aliti Dzenetan (v0.1)
+    implementation: Aliti Dzenetan
+    """         
+    list_of_music_dict = []
+    fh = open(file_path, 'r')
+    for line in fh.readlines():
+        info = line.split(';')
+        """dicti = {
+            'title': info[0],
+            'artist': info[1],
+            'albumartist': info[2],
+            'year': info[3],
+            'album': info[4],
+            'track_number': info[5],
+            'genre':info[6]
+                }"""
+        dicti = {
+            'title': '',
+            'artist': '',
+            'albumartist': '',
+            'year': '',
+            'album': '',
+            'track_number': '',
+            'genre': '' 
+                }
+        for index, key in enumerate(dicti):
+            dicti[key] = info[index]
+        list_of_music_dict.append(dicti)
+    fh.close()
+    return list_of_music_dict
+
 def show_all_music(music_list):
     """Display all the music files contained in a directory and its subdirectories.
     
