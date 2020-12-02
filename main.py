@@ -96,12 +96,13 @@ def read_playlist(playlist):
     """
     raise NotImplementedError() 
 
-def concatenate(word_list):
+def concatenate(word_list, separator=''):
     """Concatenate word from a list to a string
     
     Parameters
     ----------
     word_list: a list of words (list)
+    seperator: Seperator to put between the items to concatenate (str, optional)
     
     Returns
     -------
@@ -109,13 +110,15 @@ def concatenate(word_list):
 
     Version
     -------
-    specification: Aliti Dzenetan (v0.1)
-    implementation: Aliti Dzenetan
+    specification: Aliti Dzenetan, Collard Youlan (v0.1 02/12/20)
+    implementation: Aliti Dzenetan, Collard Youlan (v0.1 02/12/20)
     """
     #function used instead of str.join()
     string = ''
-    for word in word_list:
+    for index, word in enumerate(word_list):
         string += word
+        if not index == len(word_list) - 1:
+            string += separator
     return string
 
 def sort_music(dir_extract_path):
