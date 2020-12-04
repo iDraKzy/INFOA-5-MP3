@@ -105,15 +105,22 @@ def read_playlist(music_list, name):
     implementation: Hoebrechts Georges
     """
     # open playlist file according to it's name and read content + ? initialise ?
+
     fh = open('./Playlists/%s.txt' % name, 'r')
+
     lines = fh.readlines()
+
     # play music in the playlist + ? block ?
+
     for line in lines:
-        play_music(music_list, title)
-    # besoin si dans fonction play_music ?
-    while mixer.music.get_busy():
-        time.sleep(2)
+        artist_and_title = str.split(line, ' -- ')
+        artist = artist_and_title[0]
+        title = artist_and_title[1]
+
+        play_music(music_list, title, artist)
+
     #close playlist file
+
     fh.close()
 
 def concatenate(word_list, separator=''):
