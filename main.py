@@ -38,6 +38,9 @@ def generate_playlist(name, music_list, filter_type, artist = None, year = None,
 
     elif filter_type == 'including':
         for song in music_list:
+            print(song)
+            if artist == None:
+                artist = ''
             if artist in song['artist']:
                 playlist.append(song)
             elif year == song['year']:
@@ -271,7 +274,8 @@ def information_dict(file_path):
             'track_number': info[5],
             'genre':info[6]
         }
-        
+        list_of_music_dict.append(song_ref)
+
     fh.close()
     return list_of_music_dict
 
@@ -341,4 +345,6 @@ for index, song in enumerate(_data_structures):
 tag = EasyMP3('./test.mp3')
 print(tag)
 
-sort_music("./archive")
+_list = information_dict("./dicti.txt")
+print(_list)
+generate_playlist("Test", _list, 'including', genre='Rock')
