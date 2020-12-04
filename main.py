@@ -38,9 +38,6 @@ def generate_playlist(name, music_list, filter_type, artist = None, year = None,
 
     elif filter_type == 'including':
         for song in music_list:
-            print(song)
-            if artist == None:
-                artist = ''
             if artist in song['artist']:
                 playlist.append(song)
             elif year == song['year']:
@@ -306,7 +303,7 @@ def play_music(music_list, title, artist):
     title: Title of the song to play
     artist: Artist of the song to play
     
-    ".\\audio\\artist\\album\\01. Titre (année)
+    ".\\audio\\artist\\album\\01. Titre (année)"
 
     Version
     -------
@@ -315,7 +312,7 @@ def play_music(music_list, title, artist):
     """
     pass
 
-# mixer.init()
+mixer.init()
 
 _data_structures = [
     {
@@ -337,13 +334,6 @@ _data_structures = [
         'genre': 'Jazz'
     }
 ]
-
-for index, song in enumerate(_data_structures):
-    if song['title'] == 'title2' and song['artist'] == 'artist2':
-        print(_data_structures[index])
-
-tag = EasyMP3('./test.mp3')
-print(tag)
 
 _list = information_dict("./dicti.txt")
 print(_list)
