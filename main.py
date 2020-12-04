@@ -87,7 +87,7 @@ def show_content_playlist(playlist):
     specification: Hoebrechts Georges (v.1 01/12/20)
     implementation: 
     """
-    fh = open('.\\Playlists\%s.txt' % playlist)
+    fh = open('.\\Playlists\%s.txt' % playlist, 'r')
     lines = fh.readlines()
 
     for line in lines:
