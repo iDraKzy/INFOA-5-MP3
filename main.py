@@ -69,8 +69,10 @@ def show_all_playlist():
     specification: Hoebrechts Georges (v.1 01/12/20)
     implementation: Adam Loïc (v.1 04/12/20)
     """ 
-    list_playlist = os.listdir('./Playlists')
-    print(list_playlist)
+    list_playlist = os.listdir("./Playlists")
+
+    for playlist in list_playlist:
+        print(playlist)
  
 # afficher les morceaux contenus dans une playlist, (Georges, Loic, Youlan, P-A) 
  
@@ -89,12 +91,12 @@ def show_content_playlist(playlist):
  
 # lire une playlist du début à la fin (appel « bloquant »). (Georges, Loic, Youlan) 
  
-def read_playlist(music_dict, name):
+def read_playlist(music_list, name):
     """read every song contained in a playlist
 
     Parameters
     ----------
-    music_dict: Dictionnary containing all songs
+    music_list: list of all musics (list)
     name : name of the playlist (str)
 
     Version
@@ -106,7 +108,7 @@ def read_playlist(music_dict, name):
     fh = open('./Playlists/%s.txt' % name, 'r')
     lines = fh.readlines()
     # play music in the playlist + ? block ?
-    for lines in fh:
+    for line in lines:
         play_music(music_list, title)
     # besoin si dans fonction play_music ?
     while mixer.music.get_busy():
@@ -125,6 +127,10 @@ def concatenate(word_list, separator=''):
     Returns
     -------
     string: the elements of word_list (str)
+
+    Notes
+    -----
+    This function is not meant to be called directly by the end user
 
     Version
     -------
@@ -148,7 +154,7 @@ def sort_music(dir_extract_path):
     
     Returns
     -------
-    list_of_music_dict: dictionnary containing all musics and their infos (dict)
+    list_of_music_dict: list containing all musics and their infos (list)
 
     Notes
     -----
@@ -291,7 +297,7 @@ def show_all_music(path_to_txt):
         print('%s from artist %s in album %s' % (elem['title'], elem['artist'], elem['album']))
 
 
-def play_music(music_dict, title, artist):
+def play_music(music_list, title, artist):
     """Play music from start to finish
 
     Parameters
