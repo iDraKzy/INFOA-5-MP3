@@ -200,7 +200,7 @@ def sort_music(dir_extract_path):
                 album = concatenate(song_info['album'][0].split('/'))
                 album = concatenate(album.split(':'))
                 artists = []
-                for artist in song_info['artist']
+                for artist in song_info['artist']:
                     artist = concatenate(artist.split('/'))
                     artist = concatenate(artist.split(':'))
                     artists.append(artist)
