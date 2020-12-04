@@ -39,10 +39,13 @@ def generate_playlist(name, music_list, filter_type, artist = None, year = None,
     elif filter_type == 'including':
         for song in music_list:
             if artist in song['artist']:
+                print(artist)
                 playlist.append(song)
             elif year == song['year']:
+                print(year)
                 playlist.append(song)
             elif genre == song['genre']:
+                print(genre)
                 playlist.append(song)
 
     if len(playlist) != 0:
@@ -120,7 +123,8 @@ def read_playlist(music_list, name):
     # play music in the playlist + ? block ?
 
     for line in lines:
-        artist_and_title = str.split(line, ' -- ')
+        # line[:-1] to remove the \n at the end of the line
+        artist_and_title = str.split(line[:-1], ' -- ')
         artist = artist_and_title[0]
         title = artist_and_title[1]
 
@@ -225,7 +229,7 @@ def sort_music(dir_extract_path):
 
                 path = '.\\audio'+'\\'+song_ref['artist']
 
-                #creating directories artist/album for files if it doesn't exists 
+                #creating directories audio/artist/album for files if it doesn't exists 
                 if not os.path.exists('.\\audio'):
                     os.mkdir('.\\audio')
                 if not os.path.exists(path):
@@ -279,7 +283,7 @@ def information_dict(file_path):
             'title': info[0],
             'artist': info[1].split(','),
             'albumartist': info[2],
-            'year': info[3],
+            'year': int(info[3]),
             'album': info[4],
             'track_number': info[5],
             'genre':info[6]
@@ -316,14 +320,22 @@ def play_music(music_list, title, artist):
     title: Title of the song to play
     artist: Artist of the song to play
     
-    ".\\audio\\artist\\album\\01. Titre (année)"
+    ".\\audio\\artist\\album\\01. Titre (année).mp3"
 
     Version
     -------
     specification: Dadzie Reeckel, Collard Youlan (v.1 01/12/20)
     implementation: Dadzie Reeckel
     """
-    pass
+    print(title)
+    # print(artist)
+    for song in music_list:
+        if song['title'] == title and song['artist'][0] == artist:
+            mixer.music.load('.\\audio\\%s\\%s\\%s. %s (%d).mp3' % (song['artist'][0], song['album'], song['track_number'], song['title'], song['year']))
+            
+    mixer.music.play()
+    while mixer.music.get_busy():
+        time.sleep(1)
 
 mixer.init()
 
@@ -349,5 +361,5 @@ _data_structures = [
 ]
 
 _list = information_dict("./dicti.txt")
-print(_list)
-generate_playlist("Test", _list, 'including', genre='Rock')
+generate_playlist("Test", _list, 'including', genre='Free-Folk', year=2006)
+read_playlist(_list, 'Test')
