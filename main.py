@@ -202,7 +202,7 @@ def sort_music(dir_extract_path):
                 if 'genre' in song_info:
                     genre = song_info['genre'][0]
                 else:
-                    genre = ' '
+                    genre = ''
 
                 #removing '/' and ':' from the title, album and name (to allow us to create valid paths)
                 #we didn't use re.split (regex) to split on multiple delimiters because we haven't seen it in course yet
@@ -325,7 +325,7 @@ def play_music(music_list, title, artist):
     Version
     -------
     specification: Dadzie Reeckel, Collard Youlan (v.1 01/12/20)
-    implementation: Dadzie Reeckel
+    implementation: Dadzie Reeckel (v.1 04/12/20)
     """
     print(title)
     # print(artist)
