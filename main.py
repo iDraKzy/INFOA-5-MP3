@@ -49,7 +49,7 @@ def generate_playlist(name, music_list, filter_type, artist = None, year = None,
         fh = open('./Playlists/%s.txt' % name, 'w')
         song_str_list = []
         for song in playlist:
-            song_str_list.append('%s - %s' % (song['albumartist'], song['title']))
+            song_str_list.append('%s -- %s' % (song['albumartist'], song['title']))
         fh.write(concatenate(song_str_list, '\n'))
         fh.close()
     else:
@@ -89,18 +89,30 @@ def show_content_playlist(playlist):
  
 # lire une playlist du début à la fin (appel « bloquant »). (Georges, Loic, Youlan) 
  
-def read_playlist(playlist):
+def read_playlist(music_dict, name):
     """read every song contained in a playlist
+
     Parameters
     ----------
-    playlist : name of the playlist (str)
-    
+    music_dict: Dictionnary containing all songs
+    name : name of the playlist (str)
+
     Version
     -------
-    specification: Hoebrechts Georges (v.1 01/12/20)
+    specification: Hoebrechts Georges (v0.1), Hoebrechts Georges (v0.2)
     implementation: Hoebrechts Georges
     """
-    raise NotImplementedError() 
+    # open playlist file according to it's name and read content + ? initialise ?
+    fh = open('./Playlists/%s.txt' % name, 'r')
+    lines = fh.readlines()
+    # play music in the playlist + ? block ?
+    for lines in fh:
+        play_music(music_list, title)
+    # besoin si dans fonction play_music ?
+    while mixer.music.get_busy():
+        time.sleep(2)
+    #close playlist file
+    fh.close()
 
 def concatenate(word_list, separator=''):
     """Concatenate word from a list to a string
@@ -188,9 +200,11 @@ def sort_music(dir_extract_path):
                     }                
                 list_of_music_dict.append(dicti)
 
-                path = '.\\'+dicti['artist']
+                path = '.\\audio'+'\\'+dicti['artist']
 
                 #creating directories artist/album for files if it doesn't exists 
+                if not os.path.exists('.\\audio'):
+                    os.mkdir('.\\audio')
                 if not os.path.exists(path):
                     os.mkdir(path)
                 path += '\\'+dicti['album']               
@@ -276,25 +290,24 @@ def show_all_music(path_to_txt):
     for elem in dicti:
         print('%s from artist %s in album %s' % (elem['title'], elem['artist'], elem['album']))
 
-def play_music(mp3_path):
-    """
-    Play music from start to finish
-    
-    PARAMETERS
-    ----------
-    mp3_path : The path of the mp3 file(str)
- 
-    
-    VERSION
-    -------
-    specification: Reeckel Dadzie (v.1 01/12/20)
-    implementation: Reeckel Dadzie (v.1 04/12/20)
-    """
-    mixer.music.load(mp3_path)
-    mixer.music.play()
-    while mixer.music.get_busy():
-        time.sleep(2)
 
+def play_music(music_dict, title, artist):
+    """Play music from start to finish
+
+    Parameters
+    ----------
+    mucic_list: List containing all songs
+    title: Title of the song to play
+    artist: Artist of the song to play
+    
+    ".\\artist\\album\\01. Titre (année)
+
+    Version
+    -------
+    specification: Dadzie Reeckel, Collard Youlan (v.1 01/12/20)
+    implementation: Dadzie Reeckel
+    """
+    pass
 
 # mixer.init()
 
@@ -325,3 +338,5 @@ for index, song in enumerate(_data_structures):
 
 tag = EasyMP3('./test.mp3')
 print(tag)
+
+sort_music("./archive")

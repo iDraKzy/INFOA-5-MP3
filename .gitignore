@@ -129,3 +129,6 @@ dmypy.json
 .pyre/
 
 /Playlists
+/audio
+/archive
+/dicti.txt
