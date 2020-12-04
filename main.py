@@ -113,7 +113,7 @@ def read_playlist(music_list, name):
     """
     # open playlist file according to it's name and read content + ? initialise ?
 
-    fh = open('./Playlists/%s.txt' % name, 'r')
+    fh = open('.\\Playlists\\%s.txt' % name, 'r')
 
     lines = fh.readlines()
 
