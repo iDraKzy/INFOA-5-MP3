@@ -207,7 +207,7 @@ def sort_music(dir_extract_path):
                 album = concatenate(song_info['album'][0].split('/'))
                 album = concatenate(album.split(':'))
                 artists = []
-                for artist in song_info['artist']
+                for artist in song_info['artist']:
                     artist = concatenate(artist.split('/'))
                     artist = concatenate(artist.split(':'))
                     artists.append(artist)
@@ -243,7 +243,7 @@ def sort_music(dir_extract_path):
     for dic in list_of_music_dict:
         for key in dic:
             if key == 'artist':
-                fh.write(contatenate(dic['artist'], ','))
+                fh.write(concatenate(dic['artist'], ','))
             else:
                 fh.write(dic[key] + ';')
         fh.write('\n')
