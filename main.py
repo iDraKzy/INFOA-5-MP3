@@ -27,8 +27,8 @@ def generate_playlist(name, music_list, filter_type, artist = None, year = None,
     implementation: Collard Youlan (v.1 01/12/20)
     """
 
-    if not os.path.exists('./Playlists'):
-        os.mkdir('./Playlists')
+    if not os.path.exists('.\\Playlists'):
+        os.mkdir('.\\Playlists')
 
     playlist = []
     if filter_type == 'specific':
@@ -46,7 +46,7 @@ def generate_playlist(name, music_list, filter_type, artist = None, year = None,
                 playlist.append(song)
 
     if len(playlist) != 0:
-        fh = open('./Playlists/%s.txt' % name, 'w')
+        fh = open('.\\Playlists\\%s.txt' % name, 'w')
         song_str_list = []
         for song in playlist:
             song_str_list.append('%s -- %s' % (song['albumartist'], song['title']))
@@ -86,8 +86,15 @@ def show_content_playlist(playlist):
     -------
     specification: Hoebrechts Georges (v.1 01/12/20)
     implementation: 
-    """    
-    raise NotImplementedError()
+    """
+    fh = open('.\\Playlists\%s.txt' % playlist)
+    lines = fh.readlines()
+
+    for line in lines:
+        artist, title = line.split(' -- ')
+        print('%s - %s' % (artist, title))
+    
+    fh.close()
  
 # lire une playlist du début à la fin (appel « bloquant »). (Georges, Loic, Youlan) 
  
