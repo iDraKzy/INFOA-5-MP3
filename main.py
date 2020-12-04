@@ -206,12 +206,15 @@ def sort_music(dir_extract_path):
                 title = concatenate(title.split(':'))                               
                 album = concatenate(song_info['album'][0].split('/'))
                 album = concatenate(album.split(':'))
-                artist = concatenate(song_info['artist'][0].split('/'))
-                artist = concatenate(artist.split(':'))
+                artists = []
+                for artist in song_info['artist']
+                    artist = concatenate(artist.split('/'))
+                    artist = concatenate(artist.split(':'))
+                    artists.append(artist)
 
                 song_ref = {
                     'title': title,
-                    'artist': artist,
+                    'artist': artists,
                     'albumartist': song_info['albumartist'][0],
                     'year': song_info['date'][0].split('-')[0],
                     'album': album,
@@ -239,9 +242,12 @@ def sort_music(dir_extract_path):
     fh = open('.\\dicti.txt', 'w')
     for dic in list_of_music_dict:
         for key in dic:
-            fh.write(dic[key] + ';')
+            if key == 'artist':
+                fh.write(contatenate(dic['artist'], ','))
+            else:
+                fh.write(dic[key] + ';')
         fh.write('\n')
-    fh.close()  
+    fh.close()   
 
     return list_of_music_dict
 
@@ -271,7 +277,7 @@ def information_dict(file_path):
         info = line.split(';')
         song_ref = {
             'title': info[0],
-            'artist': info[1],
+            'artist': info[1].split(','),
             'albumartist': info[2],
             'year': info[3],
             'album': info[4],
@@ -298,7 +304,7 @@ def show_all_music(path_to_txt):
     songs_ref = information_dict(path_to_txt)
     print('The following songs are available :\n')
     for elem in songs_ref:
-        print('%s from artist %s in album %s' % (elem['title'], elem['artist'], elem['album']))
+        print('%s from artist %s in album %s' % (elem['title'], concatenate(elem['artist'],', '), elem['album']))
 
 
 def play_music(music_list, title, artist):
