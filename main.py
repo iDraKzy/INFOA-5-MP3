@@ -270,7 +270,7 @@ def information_dict(file_path):
         info = line.split(';')
         song_ref = {
             'title': info[0],
-            'artist': info[1],
+            'artist': info[1].split(','),
             'albumartist': info[2],
             'year': info[3],
             'album': info[4],
@@ -297,7 +297,7 @@ def show_all_music(path_to_txt):
     songs_ref = information_dict(path_to_txt)
     print('The following songs are available :\n')
     for elem in songs_ref:
-        print('%s from artist %s in album %s' % (elem['title'], elem['artist'], elem['album']))
+        print('%s from artist %s in album %s' % (elem['title'], concatenate(elem['artist'],', '), elem['album']))
 
 
 def play_music(music_list, title, artist):
