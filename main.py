@@ -258,19 +258,22 @@ def information_dict(file_path):
     fh.close()
     return list_of_music_dict
 
-def show_all_music(music_list):
+def show_all_music(path_to_txt):
     """Display all the music files contained in a directory and its subdirectories.
     
     Parameters
     ----------
-    music_list: List of dictionnaries containing all stored songs (list)
+    path_to_txt: path to the txt file containing all infos (str)
     
     Version
     -------
     specification: Aliti Dzenetan (v0.1)
     implementation: Aliti Dzenatan
     """
-    raise NotImplementedError()
+    dicti = information_dict(path_to_txt)
+    print('The following songs are available :\n')
+    for elem in dicti:
+        print('%s from artist %s in album %s' % (elem['title'], elem['artist'], elem['album']))
 
 def play_music(mp3_path):
     """
