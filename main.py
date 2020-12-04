@@ -199,12 +199,15 @@ def sort_music(dir_extract_path):
                 title = concatenate(title.split(':'))                               
                 album = concatenate(song_info['album'][0].split('/'))
                 album = concatenate(album.split(':'))
-                artist = concatenate(song_info['artist'][0].split('/'))
-                artist = concatenate(artist.split(':'))
+                artists = []
+                for artist in song_info['artist']
+                    artist = concatenate(artist.split('/'))
+                    artist = concatenate(artist.split(':'))
+                    artists.append(artist)
 
                 song_ref = {
                     'title': title,
-                    'artist': artist,
+                    'artist': artists,
                     'albumartist': song_info['albumartist'][0],
                     'year': song_info['date'][0].split('-')[0],
                     'album': album,
@@ -232,9 +235,12 @@ def sort_music(dir_extract_path):
     fh = open('.\\dicti.txt', 'w')
     for dic in list_of_music_dict:
         for key in dic:
-            fh.write(dic[key] + ';')
+            if key == 'artist':
+                fh.write(contatenate(dic['artist'], ','))
+            else:
+                fh.write(dic[key] + ';')
         fh.write('\n')
-    fh.close()  
+    fh.close()   
 
     return list_of_music_dict
 
