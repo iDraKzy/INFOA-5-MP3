@@ -202,7 +202,7 @@ def sort_music(dir_extract_path):
                 artist = concatenate(song_info['artist'][0].split('/'))
                 artist = concatenate(artist.split(':'))
 
-                dicti = {
+                song_ref = {
                     'title': title,
                     'artist': artist,
                     'albumartist': song_info['albumartist'][0],
@@ -210,7 +210,7 @@ def sort_music(dir_extract_path):
                     'album': album,
                     'track_number': song_info['tracknumber'][0],
                     'genre': genre
-                    }                
+                }                
                 list_of_music_dict.append(dicti)
 
                 path = '.\\audio'+'\\'+dicti['artist']
@@ -262,7 +262,7 @@ def information_dict(file_path):
     fh = open(file_path, 'r')
     for line in fh.readlines():
         info = line.split(';')
-        """dicti = {
+        song_ref = {
             'title': info[0],
             'artist': info[1],
             'albumartist': info[2],
@@ -270,19 +270,8 @@ def information_dict(file_path):
             'album': info[4],
             'track_number': info[5],
             'genre':info[6]
-                }"""
-        dicti = {
-            'title': '',
-            'artist': '',
-            'albumartist': '',
-            'year': '',
-            'album': '',
-            'track_number': '',
-            'genre': '' 
         }
-        for index, key in enumerate(dicti):
-            dicti[key] = info[index]
-        list_of_music_dict.append(dicti)
+        
     fh.close()
     return list_of_music_dict
 
