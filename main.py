@@ -183,7 +183,7 @@ def sort_music(dir_extract_path):
     specification: Aliti Dzenetan (v.1 01/12/20)
     implementation: Aliti Dzenetan (v.1 02/12/20)
     """
-    if not os.path.exists('./music_list.txt'):
+    if not os.path.exists('.\\music_list.txt'):
         list_of_music_dict = []
         dir_list = os.listdir(dir_extract_path)
         for direc in dir_list: 
