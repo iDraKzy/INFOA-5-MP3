@@ -285,7 +285,7 @@ def information_dict(file_path):
             'title': info[0],
             'artist': info[1].split(','),
             'albumartist': info[2],
-            'year': int(info[3]),
+            'year': info[3],
             'album': info[4],
             'track_number': info[5],
             'genre':info[6]
@@ -333,7 +333,7 @@ def play_music(music_list, title, artist):
     # print(artist)
     for song in music_list:
         if song['title'] == title and song['artist'][0] == artist:
-            mixer.music.load('.\\audio\\%s\\%s\\%s. %s (%d).mp3' % (song['artist'][0], song['album'], song['track_number'], song['title'], song['year']))
+            mixer.music.load('.\\audio\\%s\\%s\\%s. %s (%s).mp3' % (song['artist'][0], song['album'], song['track_number'], song['title'], song['year']))
             
     mixer.music.play()
     while mixer.music.get_busy():
@@ -363,5 +363,5 @@ _data_structures = [
 ]
 
 _list = information_dict("./dicti.txt")
-generate_playlist("Test", _list, 'including', genre='Free-Folk', year=2006)
+generate_playlist("Test", _list, 'including', genre='Free-Folk', year='2006')
 read_playlist(_list, 'Test')
