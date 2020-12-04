@@ -23,8 +23,8 @@ def generate_playlist(name, music_list, filter_type, artist = None, year = None,
 
     Version
     -------
-    specification: Hoebrechts Georges, Collard Youlan (v .1 01/12/20)
-    implementation: Collard Youlan (v .1 01/12/20)
+    specification: Hoebrechts Georges, Collard Youlan (v.1 01/12/20)
+    implementation: Collard Youlan (v.1 01/12/20)
     """
 
     if not os.path.exists('./Playlists'):
@@ -66,10 +66,11 @@ def show_all_playlist():
     
     Version
     -------
-    specification: Hoebrechts Georges (v0.1)
-    implementation: Adam Loïc
+    specification: Hoebrechts Georges (v.1 01/12/20)
+    implementation: Adam Loïc (v.1 04/12/20)
     """ 
-    raise NotImplementedError()
+    list_playlist = os.listdir('./Playlists')
+    print(list_playlist)
  
 # afficher les morceaux contenus dans une playlist, (Georges, Loic, Youlan, P-A) 
  
@@ -81,7 +82,7 @@ def show_content_playlist(playlist):
     
     Version
     -------
-    specification: Hoebrechts Georges (v0.1)
+    specification: Hoebrechts Georges (v.1 01/12/20)
     implementation: 
     """    
     raise NotImplementedError()
@@ -96,7 +97,7 @@ def read_playlist(playlist):
     
     Version
     -------
-    specification: Hoebrechts Georges (v0.1)
+    specification: Hoebrechts Georges (v.1 01/12/20)
     implementation: Hoebrechts Georges
     """
     raise NotImplementedError() 
@@ -115,8 +116,8 @@ def concatenate(word_list, separator=''):
 
     Version
     -------
-    specification: Aliti Dzenetan, Collard Youlan (v0.1 02/12/20)
-    implementation: Aliti Dzenetan, Collard Youlan (v0.1 02/12/20)
+    specification: Aliti Dzenetan, Collard Youlan (v.1 02/12/20)
+    implementation: Aliti Dzenetan, Collard Youlan (v.1 02/12/20)
     """
     #function used instead of str.join()
     string = ''
@@ -143,8 +144,8 @@ def sort_music(dir_extract_path):
     
     Version
     -------
-    specification: Aliti Dzenetan (v0.1)
-    implementation: Aliti Dzenetan
+    specification: Aliti Dzenetan (v.1 01/12/20)
+    implementation: Aliti Dzenetan (v.1 02/12/20)
     """
     
     list_of_music_dict = []
@@ -227,8 +228,8 @@ def information_dict(file_path):
 
     Version
     -------
-    specification: Aliti Dzenetan (v0.1)
-    implementation: Aliti Dzenetan
+    specification: Aliti Dzenetan (v.1 01/12/20)
+    implementation: Aliti Dzenetan (v.1 02/12/20)
     """         
     list_of_music_dict = []
     fh = open(file_path, 'r')
@@ -267,8 +268,8 @@ def show_all_music(path_to_txt):
     
     Version
     -------
-    specification: Aliti Dzenetan (v0.1)
-    implementation: Aliti Dzenatan
+    specification: Aliti Dzenetan (v.1 01/12/20)
+    implementation: Aliti Dzenatan (v.1 02/12/20)
     """
     dicti = information_dict(path_to_txt)
     print('The following songs are available :\n')
@@ -286,8 +287,8 @@ def play_music(mp3_path):
     
     VERSION
     -------
-    specification: Reeckel Dadzie (v0.1)
-    implementation: 
+    specification: Reeckel Dadzie (v.1 01/12/20)
+    implementation: Reeckel Dadzie (v.1 04/12/20)
     """
     mixer.music.load(mp3_path)
     mixer.music.play()
