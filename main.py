@@ -211,20 +211,20 @@ def sort_music(dir_extract_path):
                     'track_number': song_info['tracknumber'][0],
                     'genre': genre
                 }                
-                list_of_music_dict.append(dicti)
+                list_of_music_dict.append(song_ref)
 
-                path = '.\\audio'+'\\'+dicti['artist']
+                path = '.\\audio'+'\\'+song_ref['artist']
 
                 #creating directories artist/album for files if it doesn't exists 
                 if not os.path.exists('.\\audio'):
                     os.mkdir('.\\audio')
                 if not os.path.exists(path):
                     os.mkdir(path)
-                path += '\\'+dicti['album']               
+                path += '\\'+song_ref['album']               
                 if not os.path.exists(path):
                     os.mkdir(path)
                 
-                new_path = path+'\\'+dicti['track_number']+'. '+ dicti['title']+' '+'('+ dicti['year']+').mp3'
+                new_path = path+'\\'+song_ref['track_number']+'. '+ song_ref['title']+' '+'('+ song_ref['year']+').mp3'
                 
                 
                 os.rename(song_path, new_path)
@@ -287,9 +287,9 @@ def show_all_music(path_to_txt):
     specification: Aliti Dzenetan (v.1 01/12/20)
     implementation: Aliti Dzenatan (v.1 02/12/20)
     """
-    dicti = information_dict(path_to_txt)
+    songs_ref = information_dict(path_to_txt)
     print('The following songs are available :\n')
-    for elem in dicti:
+    for elem in songs_ref:
         print('%s from artist %s in album %s' % (elem['title'], elem['artist'], elem['album']))
 
 
