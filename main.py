@@ -183,77 +183,79 @@ def sort_music(dir_extract_path):
     specification: Aliti Dzenetan (v.1 01/12/20)
     implementation: Aliti Dzenetan (v.1 02/12/20)
     """
-    
-    list_of_music_dict = []
-    dir_list = os.listdir(dir_extract_path)
-    for direc in dir_list: 
-       
-        dir_path = dir_extract_path +'\\'+direc 
+    if not os.path.exists('./music_list.txt'):
+        list_of_music_dict = []
+        dir_list = os.listdir(dir_extract_path)
+        for direc in dir_list: 
+        
+            dir_path = dir_extract_path +'\\'+direc 
 
-        if os.path.isdir(dir_path): 
-            song_list = os.listdir(dir_path)
-            
-            for song in song_list:
+            if os.path.isdir(dir_path): 
+                song_list = os.listdir(dir_path)
                 
-                song_path = dir_path+'\\'+song
-                song_info = EasyMP3(song_path)
-                
-                #checking if the 'genre' exists
-                if 'genre' in song_info:
-                    genre = song_info['genre'][0]
+                for song in song_list:
+                    
+                    song_path = dir_path+'\\'+song
+                    song_info = EasyMP3(song_path)
+                    
+                    #checking if the 'genre' exists
+                    if 'genre' in song_info:
+                        genre = song_info['genre'][0]
+                    else:
+                        genre = ''
+
+                    #removing '/' and ':' from the title, album and name (to allow us to create valid paths)
+                    #we didn't use re.split (regex) to split on multiple delimiters because we haven't seen it in course yet
+                    title = concatenate(song_info['title'][0].split('/'))           
+                    title = concatenate(title.split(':'))                               
+                    album = concatenate(song_info['album'][0].split('/'))
+                    album = concatenate(album.split(':'))
+                    artists = []
+                    for artist in song_info['artist']:
+                        artist = concatenate(artist.split('/'))
+                        artist = concatenate(artist.split(':'))
+                        artists.append(artist)
+
+                    song_ref = {
+                        'title': title,
+                        'artist': artists,
+                        'albumartist': song_info['albumartist'][0],
+                        'year': song_info['date'][0].split('-')[0],
+                        'album': album,
+                        'track_number': song_info['tracknumber'][0],
+                        'genre': genre
+                    }                
+                    list_of_music_dict.append(song_ref)
+
+                    path = '.\\audio'+'\\'+song_ref['artist']
+
+                    #creating directories audio/artist/album for files if it doesn't exists 
+                    if not os.path.exists('.\\audio'):
+                        os.mkdir('.\\audio')
+                    if not os.path.exists(path):
+                        os.mkdir(path)
+                    path += '\\'+song_ref['album']               
+                    if not os.path.exists(path):
+                        os.mkdir(path)
+                    
+                    new_path = path+'\\'+song_ref['track_number']+'. '+ song_ref['title']+' '+'('+ song_ref['year']+').mp3'
+                    
+                    
+                    os.rename(song_path, new_path)
+    
+        fh = open('.\\music_list.txt', 'w')
+        for dic in list_of_music_dict:
+            for key in dic:
+                if key == 'artist':
+                    fh.write(concatenate(dic['artist'], ','))
                 else:
-                    genre = ''
+                    fh.write(dic[key] + ';')
+            fh.write('\n')
+        fh.close()   
 
-                #removing '/' and ':' from the title, album and name (to allow us to create valid paths)
-                #we didn't use re.split (regex) to split on multiple delimiters because we haven't seen it in course yet
-                title = concatenate(song_info['title'][0].split('/'))           
-                title = concatenate(title.split(':'))                               
-                album = concatenate(song_info['album'][0].split('/'))
-                album = concatenate(album.split(':'))
-                artists = []
-                for artist in song_info['artist']:
-                    artist = concatenate(artist.split('/'))
-                    artist = concatenate(artist.split(':'))
-                    artists.append(artist)
-
-                song_ref = {
-                    'title': title,
-                    'artist': artists,
-                    'albumartist': song_info['albumartist'][0],
-                    'year': song_info['date'][0].split('-')[0],
-                    'album': album,
-                    'track_number': song_info['tracknumber'][0],
-                    'genre': genre
-                }                
-                list_of_music_dict.append(song_ref)
-
-                path = '.\\audio'+'\\'+song_ref['artist']
-
-                #creating directories audio/artist/album for files if it doesn't exists 
-                if not os.path.exists('.\\audio'):
-                    os.mkdir('.\\audio')
-                if not os.path.exists(path):
-                    os.mkdir(path)
-                path += '\\'+song_ref['album']               
-                if not os.path.exists(path):
-                    os.mkdir(path)
-                
-                new_path = path+'\\'+song_ref['track_number']+'. '+ song_ref['title']+' '+'('+ song_ref['year']+').mp3'
-                
-                
-                os.rename(song_path, new_path)
-    
-    fh = open('.\\dicti.txt', 'w')
-    for dic in list_of_music_dict:
-        for key in dic:
-            if key == 'artist':
-                fh.write(concatenate(dic['artist'], ','))
-            else:
-                fh.write(dic[key] + ';')
-        fh.write('\n')
-    fh.close()   
-
-    return list_of_music_dict
+        return list_of_music_dict
+    else:
+        print('The import has already been done, run information_dict to retrieve the information')
 
 def information_dict(file_path):
     """Store music information from a file to a list of dictionnaries
