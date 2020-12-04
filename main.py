@@ -279,7 +279,7 @@ def information_dict(file_path):
             'album': '',
             'track_number': '',
             'genre': '' 
-                }
+        }
         for index, key in enumerate(dicti):
             dicti[key] = info[index]
         list_of_music_dict.append(dicti)
@@ -313,7 +313,7 @@ def play_music(music_list, title, artist):
     title: Title of the song to play
     artist: Artist of the song to play
     
-    ".\\artist\\album\\01. Titre (année)
+    ".\\audio\\artist\\album\\01. Titre (année)
 
     Version
     -------
