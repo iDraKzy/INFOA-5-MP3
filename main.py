@@ -248,6 +248,7 @@ def sort_music(dir_extract_path):
             for key in dic:
                 if key == 'artist':
                     fh.write(concatenate(dic['artist'], ','))
+                    fh.write(';')
                 else:
                     fh.write(dic[key] + ';')
             fh.write('\n')
@@ -339,29 +340,3 @@ def play_music(music_list, title, artist):
     while mixer.music.get_busy():
         time.sleep(1)
 
-mixer.init()
-
-_data_structures = [
-    {
-        'title': 'title',
-        'artist': ['artist'],
-        'albumartist': 'artist',
-        'year': 2014,
-        'album': 'dfdff',
-        'track_number': '01',
-        'genre': 'Rock'
-    },
-    {
-        'title': 'title2',
-        'artist': ['artist2'],
-        'albumartist': 'artist2',
-        'year': 2015,
-        'album': 'gfdiuovjfdi',
-        'track_number': '02',
-        'genre': 'Jazz'
-    }
-]
-
-_list = information_dict("./dicti.txt")
-generate_playlist("Test", _list, 'including', genre='Free-Folk', year='2006')
-read_playlist(_list, 'Test')
