@@ -227,7 +227,7 @@ def sort_music(dir_extract_path):
                     }                
                     list_of_music_dict.append(song_ref)
 
-                    path = '.\\audio'+'\\'+song_ref['artist']
+                    path = '.\\audio'+'\\'+song_ref['albumartist']
 
                     #creating directories audio/artist/album for files if it doesn't exists 
                     if not os.path.exists('.\\audio'):
@@ -243,7 +243,7 @@ def sort_music(dir_extract_path):
                     
                     os.rename(song_path, new_path)
     
-        fh = open('.\\music_list.txt', 'w')
+        fh = open('.\\music_list.txt', 'w+')
         for dic in list_of_music_dict:
             for key in dic:
                 if key == 'artist':
